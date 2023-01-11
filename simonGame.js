@@ -21,15 +21,26 @@ $(document).keydown(function () {
         initialized = true;
     }
     else {
-        nextSequence();
     }
-})
+});
+
+$("#startBtn").click(function(){
+    if (!initialized) {
+        nextSequence();
+        initialized = true;
+    }
+    else {
+    }
+});
+
+
+
 
 
 function nextSequence() {
     userClickedPattern = [];
         $("h1").text("Level: " + level);
-    
+         $("#startBtn").hide();
     level++;
     let randonNumber = Math.floor(Math.random() * 4);
     let randomChosenColor = buttonColors[randonNumber];
@@ -77,14 +88,17 @@ else{
         $("body").addClass("game-over");
         setTimeout(function () {
             $("body").removeClass('game-over');
-        }, 500);
-        setTimeout(function () {
             $("h1").text("Game Over, Press Any Key to Restart");
-        }, 500);
-        setTimeout(function () {
-            alert("Resultado: "+ (level-1));
+            $("#startBtn").show();
             level = 0;
+            initialized = false;
         }, 500);
+        
+            
+        
+        
+            
+        
     }
 }
 }
